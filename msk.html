@@ -9,10 +9,29 @@
 
     <!-- Create a Twitch.Embed object that will render within the "twitch-embed" element -->
     <script type="text/javascript">
+	    (function() {
+    'use strict';
+    theatreMode();
+
+    async function theatreMode() {
+        await sleep(2000);
+        if ( document.querySelector("[data-a-target=player-theatre-mode-button]") ) {
+            document.querySelector("[data-a-target=player-theatre-mode-button]").click();
+            console.log("Theatre Mode Button Clicked.");
+        } else {
+            console.log("Theatre Mode Button Not Found.");
+        }
+    }
+
+    function sleep (milliseconds) {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+})();
       new Twitch.Embed("twitch-embed", {
         width: 1920,
         height: 1080,
         layout: "video-with-chat",
+	muted: false,
 	allowfullscreen: true,
         channel: "tr4d3r10",
         // Only needed if this page is going to be embedded on other websites
